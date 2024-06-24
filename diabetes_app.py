@@ -36,7 +36,7 @@ with st.expander("Klik untuk Menampilkan FAQ"):
     """)
 with st.expander("Click to see the Decision Tree:"):
     st.write("""This is how the Diabetes risk prediction is made by this app.""")
-    st.image('./Decision Tree Rules.png')
+    st.image('decisiontree.png')
 
 st.write("### Jawablah 6 Pertanyaan berikut ini:")
 
