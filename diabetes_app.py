@@ -34,9 +34,9 @@ with st.expander("Klik untuk Menampilkan FAQ"):
         
             * Lebih dari 8 dari 10 orang dewasa yang mengidap prediabetes tidak mengetahui bahwa mereka mengidapnya.
     """)
-# with st.expander("Click to see the Decision Tree:"):
-    # st.write("""This is how the Diabetes risk prediction is made by this app.""")
-    # st.image('./Decision Tree Rules.png')
+with st.expander("Click to see the Decision Tree:"):
+    st.write("""This is how the Diabetes risk prediction is made by this app.""")
+    st.image('./Decision Tree Rules.png')
 
 st.write("### Jawablah 6 Pertanyaan berikut ini:")
 
