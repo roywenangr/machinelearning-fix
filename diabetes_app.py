@@ -51,7 +51,7 @@ weight = col1.number_input(
 
 # 2. Height
 height = col2.number_input(
-    '2. Tinggi Badan (inches) | 1 inch = 2.5 cm : ', min_value=36, max_value=95, value=68)
+    '2. Tinggi Badan (inches) | 1 inch = 2.5 cm', min_value=36, max_value=95, value=68)
 
 # 3. Age
 age = col3.selectbox(
