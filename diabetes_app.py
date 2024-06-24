@@ -34,8 +34,8 @@ with st.expander("Klik untuk Menampilkan FAQ"):
         
             * Lebih dari 8 dari 10 orang dewasa yang mengidap prediabetes tidak mengetahui bahwa mereka mengidapnya.
     """)
-with st.expander("Click to see the Decision Tree:"):
-    st.write("""This is how the Diabetes risk prediction is made by this app.""")
+with st.expander("Klik untuk melihat Decision Tree:"):
+    st.write("""Beginilah cara prediksi risiko Diabetes dibuat oleh aplikasi ini.""")
     st.image('decisiontree.png')
 
 st.write("### Jawablah 6 Pertanyaan berikut ini:")
@@ -55,19 +55,19 @@ height = col2.number_input(
 
 # 3. Age
 age = col3.selectbox(
-    '3. Umur', ('Age 18 to 24',
-                            'Age 25 to 29',
-                            'Age 30 to 34',
-                            'Age 35 to 39',
-                            'Age 40 to 44',
-                            'Age 45 to 49',
-                            'Age 50 to 54',
-                            'Age 55 to 59',
-                            'Age 60 to 64',
-                            'Age 65 to 69',
-                            'Age 70 to 74',
-                            'Age 75 to 79',
-                            'Age 80 or older'), index=4)
+    '3. Umur', ('18 - 24',
+                            '25 - 29',
+                            '30 - 34',
+                            '35 - 39',
+                            '40 - 44',
+                            '45 - 49',
+                            '50 - 54',
+                            '55 - 59',
+                            '60 - 64',
+                            '65 - 69',
+                            '70 - 74',
+                            '75 - 79',
+                            '80 - Lebih Tua'), index=4)
 
 # 4. HighChol
 highchol = col1.selectbox(
@@ -125,8 +125,8 @@ def prep_df(df):
     df = df[['BMI', 'Age', 'HighChol', 'HighBP', 'GenHlth']]
 
     # Age
-    df['Age'] = df['Age'].replace({'Age 18 to 24': 1, 'Age 25 to 29': 2, 'Age 30 to 34': 3, 'Age 35 to 39': 4, 'Age 40 to 44': 5, 'Age 45 to 49': 6,
-                                   'Age 50 to 54': 7, 'Age 55 to 59': 8, 'Age 60 to 64': 9, 'Age 65 to 69': 10, 'Age 70 to 74': 11, 'Age 75 to 79': 12, 'Age 80 or older': 13})
+    df['Age'] = df['Age'].replace({'18 - 24': 1, '25 - 29': 2, '30 - 34': 3, '35 - 39': 4, '40 - 44': 5, '45 - 49': 6,
+                                   '50 - 54': 7, '55 - 59': 8, '60 - 64': 9, '65 - 69': 10, '70 - 74': 11, '75 - 79': 12, '80 - Lebih Tua': 13})
     # HighChol
     df['HighChol'] = df['HighChol'].replace({'Ya': 1, 'Tidak': 0})
     # HighBP
@@ -143,9 +143,9 @@ df = prep_df(df1)
 
 with st.expander("Lihat data anda"):
     st.write("**User Inputs** ", df1)
-with st.expander("Click to see what goes into the Decision Tree for prediction"):
-    st.write("**User Inputs Prepared for Decision Tree** ", df,
-             "** Note that BMI is calculated from the Weight and Height you entered. Age has 14 categories from 1 to 13 in steps of 5 years. HighChol and HighBP are 0 for No and 1 for Yes. GenHlth is on a scale from 1=Excellent to 5=Poor. These come directly from BRFSS questions the model learned from.")
+with st.expander("Klik untuk melihat apa yang masuk ke dalam Decision Tree untuk prediksi"):
+    st.write("**Input Pengguna Disiapkan untuk Decision Tree** ", df,
+             "** Perhatikan bahwa BMI dihitung dari Berat dan Tinggi Badan yang Anda masukkan. Usia memiliki 14 kategori dari 1 hingga 13 dengan langkah 5 tahun. HighChol dan HighBP adalah 0 untuk Tidak dan 1 untuk Ya. GenHlth memiliki skala dari 1 = Sangat Baik hingga 5 = Buruk. Ini berasal langsung dari pertanyaan BRFSS yang dipelajari oleh model.")
 
 # load in the model
 model = joblib.load('./dt_model.pkl')
@@ -160,13 +160,13 @@ if st.button('Klik di sini untuk memprediksi Risiko Diabetes Tipe II Anda'):
     high_risk_proba = round(prediction_probability[0][1] * 100)
 
     if(prediction[0] == 0):
-        st.write("Anda berada pada **low-risk** untuk Diabetes Tipe II atau pradiabetes")
+        st.write("Anda berada pada **Resiko Rendah** untuk Diabetes Tipe II atau pradiabetes")
         st.write("Prediksi probabilitas risiko rendah",
                  low_risk_proba, "%")
         st.write("Prediksi probabilitas risiko tinggi",
                  high_risk_proba, "%")
     else:
-        st.write("Anda berada pada **high-risk** untuk Diabetes Tipe II atau pradiabetes")
+        st.write("Anda berada pada **Resiko Tinggi** untuk Diabetes Tipe II atau pradiabetes")
         st.write("Prediksi probabilitas risiko rendah",
                  low_risk_proba, "%")
         st.write("Prediksi probabilitas risiko tinggi",
