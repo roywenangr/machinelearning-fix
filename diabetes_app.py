@@ -55,7 +55,7 @@ height = col2.number_input(
 
 # 3. Age
 age = col3.selectbox(
-    '3. Umur:', ('Age 18 to 24',
+    '3. Umur', ('Age 18 to 24',
                             'Age 25 to 29',
                             'Age 30 to 34',
                             'Age 35 to 39',
@@ -80,7 +80,7 @@ highbp = col2.selectbox(
     ('Ya', 'Tidak'), index=0)
 
 # 6. GenHlth
-genhlth = col3.selectbox("6. Kesehatan Umum: Bagaimana Anda memberi peringkat Kesehatan Umum Anda dalam skala dari 1 = Sangat Baik hingga 5 = Buruk? Pertimbangkan kesehatan fisik dan mental.",
+genhlth = col3.selectbox("6. Kesehatan Umum: Bagaimana Anda memberi peringkat Kesehatan Umum Anda dalam skala dari 1 = Sempurna hingga 5 = Buruk? Pertimbangkan kesehatan fisik dan mental.",
                          ('Sempurna', 'Sangat Baik', 'Baik', 'Cukup', 'Kurang'), index=3)
 
 # Create dataframe:
@@ -143,9 +143,9 @@ df = prep_df(df1)
 
 with st.expander("Lihat data anda"):
     st.write("**User Inputs** ", df1)
-# with st.expander("Click to see what goes into the Decision Tree for prediction"):
-#     st.write("**User Inputs Prepared for Decision Tree** ", df,
-#              "** Note that BMI is calculated from the Weight and Height you entered. Age has 14 categories from 1 to 13 in steps of 5 years. HighChol and HighBP are 0 for No and 1 for Yes. GenHlth is on a scale from 1=Excellent to 5=Poor. These come directly from BRFSS questions the model learned from.")
+with st.expander("Click to see what goes into the Decision Tree for prediction"):
+    st.write("**User Inputs Prepared for Decision Tree** ", df,
+             "** Note that BMI is calculated from the Weight and Height you entered. Age has 14 categories from 1 to 13 in steps of 5 years. HighChol and HighBP are 0 for No and 1 for Yes. GenHlth is on a scale from 1=Excellent to 5=Poor. These come directly from BRFSS questions the model learned from.")
 
 # load in the model
 model = joblib.load('./dt_model.pkl')
