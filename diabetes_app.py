@@ -53,7 +53,7 @@ with st.expander("Click for FAQ:"):
     """)
 with st.expander("Click to see the Decision Tree:"):
     st.write("""This is how the Diabetes risk prediction is made by this app.""")
-    st.image('./Decision Tree Rules.png')
+    # st.image('./Decision Tree Rules.png')
 
 st.write("### Answer the following 6 Questions:")
 
