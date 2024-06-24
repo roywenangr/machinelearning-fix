@@ -1,4 +1,4 @@
-# [diabetes-risk-app](https://machinelearning-fix-mrdttjbwpyhzqtjthyjpvx.streamlit.app/)
+# [Aplikasi Prediksi Resiko Diabetes](https://machinelearning-fix-mrdttjbwpyhzqtjthyjpvx.streamlit.app/)
 
 Prediksi Resiko Diabetes
 * Decision Tree Model
