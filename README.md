@@ -1,10 +1,11 @@
-# [diabetes-risk-app](https://share.streamlit.io/alexteboul/diabetes-risk-app/diabetes_app.py)
+# [diabetes-risk-app](https://machinelearning-fix-mrdttjbwpyhzqtjthyjpvx.streamlit.app/)
 
-Diabetes Risk Prediction app
+Prediksi Resiko Diabetes
 * Decision Tree Model
-* Trained on over 115,000 survey responses from the CDC's Behavioral Risk Factor Surveillance System Survey
-* Data Prep and Model Building @ [Training Code Notebook](https://www.kaggle.com/code/alexteboul/diabetes-risk-streamlit-app).
+* Dilatih dengan lebih dari 115.000 tanggapan survei dari Survei Sistem Pengawasan Faktor Risiko Perilaku CDC
+* Data Prep and Pembuatan Model
+* [Dataset](https://www.kaggle.com/datasets/cdc/behavioral-risk-factor-surveillance-system/data)
 
-**Tools:** [Training Code Notebook](https://www.kaggle.com/code/alexteboul/diabetes-risk-streamlit-app), [streamlit](https://streamlit.io), [pandas](https://pandas.pydata.org), [scikit-learn](https://scikit-learn.org/stable/)
+**Tools:** [streamlit](https://streamlit.io), [pandas](https://pandas.pydata.org), [scikit-learn](https://scikit-learn.org/stable/)
 
-## Try it out: [diabetes-risk-app](https://share.streamlit.io/alexteboul/diabetes-risk-app/diabetes_app.py)
+## Try it out: [diabetes-risk-app](https://machinelearning-fix-mrdttjbwpyhzqtjthyjpvx.streamlit.app/)
