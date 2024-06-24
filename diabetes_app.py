@@ -43,49 +43,31 @@ st.write("### Jawablah 6 Pertanyaan berikut ini:")
 # create the colums to hold user inputs
 col1, col2, col3 = st.columns(3)
 
-# function to convert lbs to kg
-def lbs_to_kg(lbs):
-    return lbs * 0.45359237
-
-# function to convert cm to inch
-def cm_to_inch(cm):
-    return cm / 2.54
-
 # gather user inputs
 
 # 1. Weight
-weight_unit = col1.selectbox('Pilih satuan berat', ('lbs', 'kg'), index=0)
 weight = col1.number_input(
-    '1. Berat Badan', min_value=10, max_value=999, value=190)
-
-# Convert weight to lbs if the user selected kg
-if weight_unit == 'kg':
-    weight = weight / 0.45359237
+    '1. Berat Badan (lbs) | 2 Kg = 1 lbs', min_value=10, max_value=999, value=190)
 
 # 2. Height
-height_unit = col2.selectbox('Pilih satuan tinggi badan', ('inch', 'cm'), index=0)
 height = col2.number_input(
-    '2. Tinggi Badan', min_value=10, max_value=250, value=170)
-
-# Convert height to inches if the user selected cm
-if height_unit == 'cm':
-    height = cm_to_inch(height)
+    '2. Tinggi Badan (inches) | 1 inch = 2.5 cm', min_value=10, max_value=95, value=68)
 
 # 3. Age
 age = col3.selectbox(
     '3. Umur', ('18 - 24',
-                '25 - 29',
-                '30 - 34',
-                '35 - 39',
-                '40 - 44',
-                '45 - 49',
-                '50 - 54',
-                '55 - 59',
-                '60 - 64',
-                '65 - 69',
-                '70 - 74',
-                '75 - 79',
-                '80 - Lebih Tua'), index=4)
+                            '25 - 29',
+                            '30 - 34',
+                            '35 - 39',
+                            '40 - 44',
+                            '45 - 49',
+                            '50 - 54',
+                            '55 - 59',
+                            '60 - 64',
+                            '65 - 69',
+                            '70 - 74',
+                            '75 - 79',
+                            '80 - Lebih Tua'), index=4)
 
 # 4. HighChol
 highchol = col1.selectbox(
@@ -117,7 +99,7 @@ def calculate_bmi(weight, height):
         bmi - the body mass index
 
     """
-    bmi = round((703 * weight) / (height ** 2))
+    bmi = round((703 * weight)/(height**2))
 
     return bmi
 
@@ -151,7 +133,7 @@ def prep_df(df):
     df['HighBP'] = df['HighBP'].replace({'Ya': 1, 'Tidak': 0})
     # GenHlth
     df['GenHlth'] = df['GenHlth'].replace(
-        {'Sempurna': 1, 'Sangat Baik': 2, 'Baik': 3, 'Cukup': 4, 'Kurang': 5})
+        {'Sempurna':1, 'Sangat Baik':2, 'Baik':3, 'Cukup':4, 'Kurang':5})
 
     return df
 
