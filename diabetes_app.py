@@ -18,44 +18,27 @@ from sklearn.tree import DecisionTreeClassifier
 
 # Header
 st.write("""
-# Diabetes Risk Prediction App
-Answer 6 questions to find out if you may be at risk for Type II Diabetes.
+# Prediksi Risiko Diabetes
+Jawablah 6 pertanyaan untuk mengetahui apakah Anda berisiko terkena Diabetes Tipe II.
 """)
 
-with st.expander("Click for FAQ:"):
+with st.expander("Klik untuk Menampilkan FAQ"):
     st.write("""
-    * **Questions**:
-        1. Weight
-        2. Height
-        3. Age
-        4. High Cholesterol
-        5. High Blood Pressure
-        6. General Health
-        * Weight and Height get converted to BMI for use in the model.
-    * **How does this work?**
-        * Survey responses from the CDC's Behavioral Risk Factor Surveillance System were used to train a simple, easy to interpret machine learning model called a Decision Tree. [Code Source](https://www.kaggle.com/code/alexteboul/diabetes-risk-streamlit-app)
-        * Decision Trees work by creating a set of rules for making a prediction based on previously seen examples.
-        * In our case, the Decision Tree has learned to predict if someone is at risk of developing Type II Diabetes or already has Type II Diabetes.
-        * This app **DOES NOT PROVIDE A DIAGNOSIS**, it is simply meant as a **public awareness tool** to drive healthier habits and get those at risk of Type II Diabetes / those with prediabetes to seek the professional medical advice.
-    * **What is the Behavioral Risk Factor Surveillance System?**
-        * The Behavioral Risk Factor Surveillance System (BRFSS) is the nation’s premier system of health-related telephone surveys that collect state data about U.S. residents regarding their health-related risk behaviors, chronic health conditions, and use of preventive services.
-        * Established in 1984 with 15 states, BRFSS now collects data in all 50 states as well as the District of Columbia and three U.S. territories.
-        * BRFSS completes more than 400,000 adult interviews each year, making it the largest continuously conducted health survey system in the world.
-    * **How well does this machine learning model work?**
-        * Based over 115,000 survey responses used in the training and 5-fold cross validation of this model:
-        * Accuracy 70% (+/- 2%), Recall 75% (+/- 2%), Precision 69% (+/- 2%)
-        * The model was optimized for Recall (otherwise know as Sensitivity or True Positive Rate), because the aim of this tool is for public awareness where it is more important to capture as many potential positives as possible.
-    * **These metrics are promising, considering the following CDC estimates** - [Source](https://www.cdc.gov/diabetes/library/spotlights/diabetes-facts-stats.html):
-        * 37.3 million Americans — about 1 in 10 — have diabetes.
-            * About 1 in 5 people with diabetes don’t know they have it.
-        * 96 million American adults — more than 1 in 3 — have prediabetes.
-            * More than 8 in 10 adults with prediabetes don’t know they have it.
+    * **Pertanyaan**:
+        1. Berat
+        2. Tinggi
+        3. Umur
+        4. Tingkat Kolesterol
+        5. Tekanan Darah
+        6. Kesehatan Secara Menyeluruh
+        
+            * Lebih dari 8 dari 10 orang dewasa yang mengidap prediabetes tidak mengetahui bahwa mereka mengidapnya.
     """)
-with st.expander("Click to see the Decision Tree:"):
-    st.write("""This is how the Diabetes risk prediction is made by this app.""")
+# with st.expander("Click to see the Decision Tree:"):
+    # st.write("""This is how the Diabetes risk prediction is made by this app.""")
     # st.image('./Decision Tree Rules.png')
 
-st.write("### Answer the following 6 Questions:")
+st.write("### Jawablah 6 Pertanyaan berikut ini:")
 
 # create the colums to hold user inputs
 col1, col2, col3 = st.columns(3)
@@ -64,15 +47,15 @@ col1, col2, col3 = st.columns(3)
 
 # 1. Weight
 weight = col1.number_input(
-    '1. Enter your Weight (lbs)', min_value=50, max_value=999, value=190)
+    '1. Berat Badan (lbs) | 2 Kg = 1 lbs', min_value=50, max_value=999, value=190)
 
 # 2. Height
 height = col2.number_input(
-    '2. Enter your Height (inches): ', min_value=36, max_value=95, value=68)
+    '2. Tinggi Badan (inches) | 1 inch = 2.5 cm : ', min_value=36, max_value=95, value=68)
 
 # 3. Age
 age = col3.selectbox(
-    '3. Select your Age:', ('Age 18 to 24',
+    '3. Umur:', ('Age 18 to 24',
                             'Age 25 to 29',
                             'Age 30 to 34',
                             'Age 35 to 39',
@@ -88,17 +71,17 @@ age = col3.selectbox(
 
 # 4. HighChol
 highchol = col1.selectbox(
-    "4. High Cholesterol: Have you EVER been told by a doctor, nurse or other health professional that your Blood Cholesterol is high?",
+    "4. Kolesterol Tinggi: Pernahkah Anda diberitahu oleh dokter, perawat, atau profesional kesehatan lainnya bahwa Kolesterol Darah Anda tinggi?",
     ('Yes', 'No'), index=1)
 
 # 5. HighBP
 highbp = col2.selectbox(
-    "5. High Blood Pressure: Have you EVER been told by a doctor, nurse or other health professional that you have high Blood Pressure?",
+    "5. Tekanan Darah Tinggi: Pernahkah Anda diberitahu oleh dokter, perawat, atau profesional kesehatan lainnya bahwa Anda memiliki Tekanan Darah Tinggi?",
     ('Yes', 'No'), index=0)
 
 # 6. GenHlth
-genhlth = col3.selectbox("6. General Health: How would you rank your General Health on a scale from 1 = Excellent to 5 = Poor? Consider physical and mental health.",
-                         ('Excellent', 'Very Good', 'Good', 'Fair', 'Poor'), index=3)
+genhlth = col3.selectbox("6. Kesehatan Umum: Bagaimana Anda memberi peringkat Kesehatan Umum Anda dalam skala dari 1 = Sangat Baik hingga 5 = Buruk? Pertimbangkan kesehatan fisik dan mental.",
+                         ('Sempurna', 'Sangat Baik', 'Baik', 'Cukup', 'Kurang'), index=3)
 
 # Create dataframe:
 df1 = pd.DataFrame([[round(weight), round(height), age, highchol, highbp, genhlth]], columns=[
@@ -150,7 +133,7 @@ def prep_df(df):
     df['HighBP'] = df['HighBP'].replace({'Yes': 1, 'No': 0})
     # GenHlth
     df['GenHlth'] = df['GenHlth'].replace(
-        {'Excellent': 1, 'Very Good': 2, 'Good': 3, 'Fair': 4, 'Poor': 5})
+        {'Sempurna':1, 'Sangat Baik':2, 'Baik':3, 'Cukup':4, 'Kurang':5})
 
     return df
 
@@ -158,17 +141,17 @@ def prep_df(df):
 # prepare the user inputs for the model to accept
 df = prep_df(df1)
 
-with st.expander("Click to see user inputs"):
+with st.expander("Lihat data anda"):
     st.write("**User Inputs** ", df1)
-with st.expander("Click to see what goes into the Decision Tree for prediction"):
-    st.write("**User Inputs Prepared for Decision Tree** ", df,
-             "** Note that BMI is calculated from the Weight and Height you entered. Age has 14 categories from 1 to 13 in steps of 5 years. HighChol and HighBP are 0 for No and 1 for Yes. GenHlth is on a scale from 1=Excellent to 5=Poor. These come directly from BRFSS questions the model learned from.")
+# with st.expander("Click to see what goes into the Decision Tree for prediction"):
+#     st.write("**User Inputs Prepared for Decision Tree** ", df,
+#              "** Note that BMI is calculated from the Weight and Height you entered. Age has 14 categories from 1 to 13 in steps of 5 years. HighChol and HighBP are 0 for No and 1 for Yes. GenHlth is on a scale from 1=Excellent to 5=Poor. These come directly from BRFSS questions the model learned from.")
 
 # load in the model
 model = joblib.load('./dt_model.pkl')
 
 # Make the prediction:
-if st.button('Click here to predict your Type II Diabetes Risk'):
+if st.button('Klik di sini untuk memprediksi Risiko Diabetes Tipe II Anda'):
 
     # make the predictions
     prediction = model.predict(df)
@@ -177,20 +160,20 @@ if st.button('Click here to predict your Type II Diabetes Risk'):
     high_risk_proba = round(prediction_probability[0][1] * 100)
 
     if(prediction[0] == 0):
-        st.write("You are at **low-risk** for Type II Diabetes or prediabetes")
-        st.write("Predicted probality of low-risk",
+        st.write("Anda berada pada **low-risk** untuk Diabetes Tipe II atau pradiabetes")
+        st.write("Prediksi probabilitas risiko rendah",
                  low_risk_proba, "%")
-        st.write("Predicted probality of high-risk",
+        st.write("Prediksi probabilitas risiko tinggi",
                  high_risk_proba, "%")
     else:
-        st.write("You are at **high-risk** for Type II Diabetes or prediabetes")
-        st.write("Predicted probality of low-risk",
+        st.write("Anda berada pada **high-risk** untuk Diabetes Tipe II atau pradiabetes")
+        st.write("Prediksi probabilitas risiko rendah",
                  low_risk_proba, "%")
-        st.write("Predicted probality of high-risk",
+        st.write("Prediksi probabilitas risiko tinggi",
                  high_risk_proba, "%")
-        st.write(
-            "Consider taking the [CDC - Prediabetes Risk Test](https://www.cdc.gov/prediabetes/risktest/)")
-        st.write(
-            "Get started on your path to preventing type 2 diabetes here: [CDC - Path 2 Prevention](https://diabetespath2prevention.cdc.gov)")
-        st.write(
-            "Consider enrolling in the National Diabetes Prevention Program, through providers like: [Lark Health](https://www.lark.com).")
+        # st.write(
+        #     "Consider taking the [CDC - Prediabetes Risk Test](https://www.cdc.gov/prediabetes/risktest/)")
+        # st.write(
+        #     "Get started on your path to preventing type 2 diabetes here: [CDC - Path 2 Prevention](https://diabetespath2prevention.cdc.gov)")
+        # st.write(
+        #     "Consider enrolling in the National Diabetes Prevention Program, through providers like: [Lark Health](https://www.lark.com).")
