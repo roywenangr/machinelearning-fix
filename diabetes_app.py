@@ -5,16 +5,6 @@ import pandas as pd
 import joblib
 import streamlit as st
 from sklearn.tree import DecisionTreeClassifier
-# Create virtual environment:
-# python3 -m venv venv
-# In your virtual environment:
-# python3 -m pip install --upgrade pip
-# python -m pip install -U autopep8
-# pip install pandas
-# pip install joblib
-# pip install streamlit
-# pip install scikit-learn
-# streamlit run diabetes_app.py
 
 # Header
 st.write("""
@@ -189,9 +179,3 @@ if st.button('Klik di sini untuk memprediksi Risiko Diabetes Tipe II Anda'):
                  low_risk_proba, "%")
         st.write("Prediksi probabilitas risiko tinggi",
                  high_risk_proba, "%")
-        # st.write(
-        #     "Consider taking the [CDC - Prediabetes Risk Test](https://www.cdc.gov/prediabetes/risktest/)")
-        # st.write(
-        #     "Get started on your path to preventing type 2 diabetes here: [CDC - Path 2 Prevention](https://diabetespath2prevention.cdc.gov)")
-        # st.write(
-        #     "Consider enrolling in the National Diabetes Prevention Program, through providers like: [Lark Health](https://www.lark.com).")
